@@ -22,7 +22,7 @@
       <textarea id="t1" rows="20"></textarea>
     </div>
     <script>
-      window.innerHeight = 500;
+      //window.innerHeight = 500;
       var fileSelector = document.querySelector("#f1");
       var text = document.querySelector("#t1");
       var filename = document.querySelector("#t2");
@@ -42,4 +42,5 @@
         e.preventDefault();
         window.open("data:application/octet-stream," + encodeURIComponent(text.value) + "/" + filename.value, "_self");
       }
+      document.write(window.innerHeight);
     </script></form></body></html>/texteditor.v9.html/texteditor.v9.html/texteditor.v9.html/texteditor.v9.html
