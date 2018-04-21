@@ -26,6 +26,7 @@ textarea {
     <input id="t2" type="text" value="1.txt" />
     <input id="b1" type="button" value="Save1" />
     <input id="b2" type="button" value="Save2" />
+	    <input id="b3" type="button" value="Save3" />
   </div>
   <div>
     <textarea id="t1" rows="1000" cols="60">
@@ -194,6 +195,7 @@ var text = document.querySelector("textarea#t1");
 var filename = document.querySelector("input#t2");
 var button1 = document.querySelector("input#b1");
 var button2 = document.querySelector("input#b2");
+	var button3 = document.querySelector("input#b3");  
 
 text.value = document.body.innerHTML;
 
@@ -227,6 +229,12 @@ button2.onclick = function(e) {
             // a [save as] dialog will be shown
             window.open("data:application/txt," + encodeURIComponent(content), "_self");
 }
+
+button3.onclick = function(e) {
+  e.preventDefault();
+  download("hello world", "dlText.txt", "text/plain");
+}
+
 </script>
 </form>
 
