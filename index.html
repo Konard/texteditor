@@ -22,6 +22,7 @@
       <input id="bSave" type="button" value="Save">
       <input id="bAddRows" type="button" value="+100 rows">
       <input id="bRemoveRows" type="button" value="-100 rows">
+      <br />
       <input id="bSelect" type="button" value="Select">
       <input id="bDelete" type="button" value="Delete"> 
       <input id="bCut" type="button" value="Cut">
@@ -65,6 +66,8 @@
           start = end = text.selectionEnd;
         updateSelectButton();
       }
+
+      updateSelectButton();
      
       text.addEventListener("mouseup", onMouseSelectionChanged);
       text.addEventListener("keyup", onKeyboardSelectionChanged);
@@ -139,4 +142,4 @@
     </script>
   </form>
 </body>
-</html>/texteditor.v14.html
+</html>/texteditor.v15.html
