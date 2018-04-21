@@ -6,11 +6,11 @@
   <style>
     * { font-family: Courier, 'Courier New', monospace; margin: 0px; padding: 0px; }
     form, form > div { width: 100%; }
-    #menu { padding-bottom: 10px; border-bottom: 1px solid #000; }
-    #menu > * { margin-top: 10px; margin-left: 10px; background: #fff; padding: 10px; border: 1px solid #888; }
+    #menu { padding-bottom: 2%; border-bottom: 1px solid #000; }
+    #menu > * { margin-top: 2%; margin-left: 2%; background: #fff; padding: 2%; border: 1px solid #888; }
     #tContent { border: none; padding: 2%; width: 96%; }
     #fSelector { width: 87px; }
-    #tFilename { width: 95%; }
+    #tFilename { width: 90%; }
   </style>
 </head>
 <body>
@@ -49,8 +49,7 @@
       function updateSelectButton() {
         selectButton.value = "Select (" + start + " - " + end + ")";
       }
-     
-      text.addEventListener("mouseup", function () {
+      function onMouseSelectionChanged() {
         if (text.selectionStart === text.selectionEnd) {
           var p = text.selectionEnd;
           if (p <= start) { end = start; start = p; }
@@ -58,7 +57,15 @@
           else end = p;
         }
         updateSelectButton();
-      });
+      }
+      function onKeyboardSelectionChanged() {
+        if (text.selectionStart === text.selectionEnd)
+          start = end = text.selectionEnd;
+        updateSelectButton();
+      }
+     
+      text.addEventListener("mouseup", onMouseSelectionChanged);
+      text.addEventListener("keyup", onKeyboardSelectionChanged);
       fileSelector.onchange = function (e) {
         var file = e.target.files[0];
         var reader = new FileReader();
