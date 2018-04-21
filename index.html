@@ -1,36 +1,33 @@
-<!DOCTYPE html><html><head>
-  <title>texteditor.v10.html</title>
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
   <style>
-    html, body { border: 1px solid gray; }
-    html { overflow: auto; }
-    body { position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; overflow: scroll; }
-    * { font-family: courier new; margin: 0px; padding: 0px; }
-    #menu { position: fixed; top: 0px; left: 0px; height: 43px; width: 100%; background-color: #fff; border-bottom: 1px solid #000; }
+    * { font-family: Courier, 'Courier New', monospace; margin: 0px; padding: 0px; }
+    form, form > div { width: 100%; }
+    #menu { padding-bottom: 10px; border-bottom: 1px solid #000; }
     #menu > * { margin-top: 10px; margin-left: 10px; }
-    #t1 { border: none; padding: 2%; position: static; margin-top: 44px; width: 96%; }
-    #f1 { width: 87px; }
-    #t2 { width: 400px; }
+    #tContent { border: none; padding: 2%; width: 96%; }
+    #fSelector { width: 87px; }
+    #tFilename { min-width: 400px; max-width: 800px; }
   </style>
 </head>
 <body>
   <form>
     <div id="menu">
-      <input id="t2" type="text">
-      <input id="f1" type="file">
-      <input id="b1" type="button" value="Save">
+      <input id="tFilename" type="text" value="texteditor.html">
+      <input id="fSelector" type="file">
+      <input id="bSave" type="button" value="Save">
     </div>
     <div>
-      <textarea id="t1" rows="20"></textarea>
+      <textarea id="tContent" rows="500"></textarea>
     </div>
     <script>
-      //window.innerHeight = 500;
-      var fileSelector = document.querySelector("#f1");
-      var text = document.querySelector("#t1");
-      var filename = document.querySelector("#t2");
-      var saveButton = document.querySelector("#b1");
-      filename.value = document.title;
-      text.value = new XMLSerializer().serializeToString(document) + "/" + filename.value;
+      var fileSelector = document.querySelector("#fSelector");
+      var text = document.querySelector("#tContent");
+      var filename = document.querySelector("#tFilename");
+      var saveButton = document.querySelector("#bSave");
+      text.value = new XMLSerializer().serializeToString(document);
       fileSelector.onchange = function(e) {
         var file = e.target.files[0];
         var reader = new FileReader();
@@ -44,8 +41,7 @@
         e.preventDefault();
         window.open("data:application/octet-stream," + encodeURIComponent(text.value) + "/" + filename.value, "_self");
       }
-      document.write(window.innerHeight);
-      //window.innerHeight = 500;
-      window.resizeTo(500, 500);
-      document.write(window.innerHeight);
-    </script></form></body></html>/texteditor.v10.html
+    </script>
+  </form>
+</body>
+</html>/texteditor.v11.html
