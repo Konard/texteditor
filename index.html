@@ -22,6 +22,9 @@
       <input id="bAddRows" type="button" value="+100 rows">
       <input id="bRemoveRows" type="button" value="-100 rows">
       <input id="bSelect" type="button" value="Select">
+      <input id="bCut" type="button" value="Cut">
+      <input id="bCopy" type="button" value="Copy">
+      <input id="bPaste" type="button" value="Paste">
     </div>
     <div>
       <textarea id="tContent" rows="100"></textarea>
@@ -36,14 +39,19 @@
       var selectButton = document.getElementById("bSelect");
       var start = 0;
       var end = 0;
+      var buffer = "";
+      var cutButton = document.getElementById("bCut");
+      var copyButton = document.getElementById("bCopy");
+      var pasteButton = document.getElementById("bPaste");
 
       text.value = new XMLSerializer().serializeToString(document);
      
       text.addEventListener("mouseup", function() {
         if (text.selectionStart === text.selectionEnd) {
           var p = text.selectionEnd;
-          if (p < start) { end = start; start = p; }
-          if (p > end) { start = end; end = p; }
+          if (p <= start) { end = start; start = p; }
+          else if (p >= end) { start = end; end = p; }
+          else end = p;
         }
         selectButton.value = "Select (" + start + " - " + end + ")";
       });
