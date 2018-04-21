@@ -9,7 +9,7 @@
     #menu > * { margin-top: 10px; margin-left: 10px; }
     #tContent { border: none; padding: 2%; width: 96%; }
     #fSelector { width: 87px; }
-    #tFilename { min-width: 400px; max-width: 800px; }
+    #tFilename { width: 95%; }
   </style>
 </head>
 <body>
@@ -18,15 +18,19 @@
       <input id="tFilename" type="text" value="texteditor.html">
       <input id="fSelector" type="file">
       <input id="bSave" type="button" value="Save">
+      <input id="bAddRows" type="button" value="+100 rows">
+      <input id="bRemoveRows" type="button" value="-100 rows">
     </div>
     <div>
-      <textarea id="tContent" rows="500"></textarea>
+      <textarea id="tContent" rows="100"></textarea>
     </div>
     <script>
       var fileSelector = document.querySelector("#fSelector");
       var text = document.querySelector("#tContent");
       var filename = document.querySelector("#tFilename");
       var saveButton = document.querySelector("#bSave");
+      var addRowsButton = document.querySelector("#bAddRows");
+      var removeRowsButton = document.querySelector("#bRemoveRows");
       text.value = new XMLSerializer().serializeToString(document);
       fileSelector.onchange = function(e) {
         var file = e.target.files[0];
@@ -41,7 +45,16 @@
         e.preventDefault();
         window.open("data:application/octet-stream," + encodeURIComponent(text.value) + "/" + filename.value, "_self");
       }
+      addRowsButton.onclick = function(e) {
+        e.preventDefault();
+        text.rows += 100;
+      }
+      removeRowsButton.onclick = function(e) {
+        e.preventDefault();
+        text.rows -= 100;
+        if (text.rows < 100) text.rows = 100;
+      }
     </script>
   </form>
 </body>
-</html>/texteditor.v11.html
+</html>/texteditor.v12.html
