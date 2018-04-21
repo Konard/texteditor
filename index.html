@@ -197,7 +197,7 @@ var button1 = document.querySelector("input#b1");
 var button2 = document.querySelector("input#b2");
 	var button3 = document.querySelector("input#b3");  
 
-text.value = document.body.innerHTML;
+text.value = document.body.outerHTML;
 
 input.onchange = function(e) {
   var reader = new FileReader();
@@ -233,6 +233,8 @@ button2.onclick = function(e) {
 button3.onclick = function(e) {
   e.preventDefault();
   download("hello world", "dlText.txt", "text/plain");
+	download("data:text/plain,hello%20world", "dlDataUrlText.txt", "text/plain");
+	download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
 }
 
 </script>
