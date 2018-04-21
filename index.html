@@ -227,7 +227,7 @@ button2.onclick = function(e) {
   e.preventDefault();
   var content = text.value;
             // a [save as] dialog will be shown
-            window.open("data:application/txt," + encodeURIComponent(content), "_self");
+            window.open("data:text/plain," + encodeURIComponent(content), "_self");
 }
 
 button3.onclick = function(e) {
