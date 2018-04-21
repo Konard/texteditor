@@ -1,4 +1,6 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+<head>
   <meta charset="UTF-8">
   <script src="remove-filename.js"></script>
   <style>
@@ -30,6 +32,10 @@
       var saveButton = document.querySelector("#bSave");
       var addRowsButton = document.querySelector("#bAddRows");
       var removeRowsButton = document.querySelector("#bRemoveRows");
+
+      for (var property in text)
+        document.write(property + " = " + text[property]);
+
       text.value = new XMLSerializer().serializeToString(document);
       fileSelector.onchange = function(e) {
         var file = e.target.files[0];
@@ -56,4 +62,7 @@
         text.rows -= 100;
         if (text.rows < 100) text.rows = 100;
       }
-    </script></form></body></html>/texteditor.html
+    </script>
+  </form>
+</body>
+</html>/texteditor.v14.html
