@@ -21,6 +21,7 @@
       <input id="bSave" type="button" value="Save">
       <input id="bAddRows" type="button" value="+100 rows">
       <input id="bRemoveRows" type="button" value="-100 rows">
+      <input id="bSelect" type="button" value="Select">
     </div>
     <div>
       <textarea id="tContent" rows="100"></textarea>
@@ -32,6 +33,7 @@
       var saveButton = document.querySelector("#bSave");
       var addRowsButton = document.querySelector("#bAddRows");
       var removeRowsButton = document.querySelector("#bRemoveRows");
+      var selectButton = document.getElementById("bSelect");
       
       var print = function (o) {
         document.write("<pre>");
@@ -45,7 +47,9 @@
       text.value = new XMLSerializer().serializeToString(document);
       
       //text.addEventListener("change", eventPrinter);
-      text.addEventListener("click", function() {print(text);});
+      text.addEventListener("mousedown", function() {
+        selectButton.value = "Select (" + text.selectionStart + " - " + text.selectionEnd + ")";
+      });
       text.setSelectionRange(0, 100);
       text.focus();
       //text.select();
