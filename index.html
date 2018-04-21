@@ -7,7 +7,7 @@
     * { font-family: Courier, 'Courier New', monospace; margin: 0px; padding: 0px; }
     form, form > div { width: 100%; }
     #menu { padding-bottom: 10px; border-bottom: 1px solid #000; }
-    #menu > * { margin-top: 10px; margin-left: 10px; }
+    #menu > * { margin-top: 10px; margin-left: 10px; background: #fff; padding: 20px; }
     #tContent { border: none; padding: 2%; width: 96%; }
     #fSelector { width: 87px; }
     #tFilename { width: 95%; }
@@ -22,6 +22,7 @@
       <input id="bAddRows" type="button" value="+100 rows">
       <input id="bRemoveRows" type="button" value="-100 rows">
       <input id="bSelect" type="button" value="Select">
+      <input id="bDelete" type="button" value="Delete"> 
       <input id="bCut" type="button" value="Cut">
       <input id="bCopy" type="button" value="Copy">
       <input id="bPaste" type="button" value="Paste">
@@ -30,21 +31,17 @@
       <textarea id="tContent" rows="200"></textarea>
     </div>
     <script>
-      var fileSelector = document.querySelector("#fSelector");
-      var text = document.querySelector("#tContent");
-      var filename = document.querySelector("#tFilename");
-      var saveButton = document.querySelector("#bSave");
-      var addRowsButton = document.querySelector("#bAddRows");
-      var removeRowsButton = document.querySelector("#bRemoveRows");
-      var selectButton = document.getElementById("bSelect");
-      var start = 0;
-      var end = 0;
-      var buffer = "";
-      var cutButton = document.getElementById("bCut");
-      var copyButton = document.getElementById("bCopy");
-      var pasteButton = document.getElementById("bPaste");
+      var fileSelector = document.getElementById("fSelector");
+      var text = document.getElementById("tContent");
+      var filename = document.getElementById("tFilename");
+      var saveButton = document.getElemenvar pasteButton = document.getElementById("bPaste");var pasteButton = document.getElementById("bPaste");
+      
 
       text.value = new XMLSerializer().serializeToString(document);
+
+      function updateSelectButton() {
+        selectButton.value = "Select (" + start + " - " + end + ")";
+      }
      
       text.addEventListener("mouseup", function () {
         if (text.selectionStart === text.selectionEnd) {
@@ -55,9 +52,6 @@
         }
         updateSelectButton();
       });
-      function updateSelectButton() {
-        selectButton.value = "Select (" + start + " - " + end + ")";
-      }
       fileSelector.onchange = function (e) {
         var file = e.target.files[0];
         var reader = new FileReader();
@@ -110,6 +104,17 @@
         var before = source.slice(0, start);
         var after = source.slice(end, source.length);
         text.value = before + buffer + after;
+      }
+      deleteButton.onclick = function (e) {
+        e.preventDefault();
+        if (start === end) return;
+        var source = text.value;
+        var before = source.slice(0, start);
+        var after = source.slice(end, source.length);
+        text.value = before + after;
+
+        end = start;
+        updateSelectButton();
       }
     </script>
   </form>
