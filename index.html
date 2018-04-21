@@ -25,8 +25,6 @@ textarea {
     <input type="file" />
     <input id="t2" type="text" value="1.txt" />
     <input id="b1" type="button" value="Save1" />
-    <input id="b2" type="button" value="Save2" />
-	    <input id="b3" type="button" value="Save3" />
   </div>
   <div>
     <textarea id="t1" rows="1000" cols="60">
@@ -34,15 +32,10 @@ textarea {
   </div>
   
   <script>
-  //var form = document.querySelector("form");
-  var input = document.querySelector("input[type=file]");
+var input = document.querySelector("input[type=file]");
 var text = document.querySelector("textarea#t1");
 var filename = document.querySelector("input#t2");
 var button1 = document.querySelector("input#b1");
-var button2 = document.querySelector("input#b2");
-	var button3 = document.querySelector("input#b3");  
-
-//text.value = document.body.outerHTML;
 
 input.onchange = function(e) {
   var reader = new FileReader();
@@ -50,45 +43,12 @@ input.onchange = function(e) {
     text.value = event.target.result;
     filename.value = e.target.files[0].name;
   }
-
-  //reader.readAsText(new Blob([e.target.files[0]]));
   reader.readAsText(e.target.files[0], "UTF-8");
 }
-
 button1.onclick = function(e) {
   e.preventDefault();
-  var blob = new Blob([text.value]);
-  var a = document.createElement("a");
-  a.download = filename.value;
-  a.href = URL.createObjectURL(blob);
-  document.body.appendChild(a);
-  //a.appendChild(document.createTextNode(filename.value));
-  //var br = document.createElement("br");
-  //document.body.appendChild(br);
-  a.click();
+  window.open("data:text/plain," + encodeURIComponent(text.value), "_self");
 }
-
-button2.onclick = function(e) {
-  e.preventDefault();
-  var content = text.value;
-            // a [save as] dialog will be shown
-            window.open("data:text/plain," + encodeURIComponent(content), "_self");
-}
-
-button3.onclick = function(e) {
-  e.preventDefault();
-	var str = "Name, Price\nApple, 2\nOrange, 3";
-var uri = 'data:text/csv;charset=utf-8,' + str;
-
-var downloadLink = document.createElement("a");
-downloadLink.href = uri;
-downloadLink.download = "data.csv";
-
-document.body.appendChild(downloadLink);
-downloadLink.click();
-document.body.removeChild(downloadLink);
-}
-
 </script>
 </form>
 
