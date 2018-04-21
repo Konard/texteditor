@@ -34,9 +34,9 @@
       var removeRowsButton = document.querySelector("#bRemoveRows");
 
       for (var property in text)
-        document.write(property + " = " + text[property]);
+        document.write(property + " = " + text[property] + "<br>");
 
-      text.value = new XMLSerializer().serializeToString(document);
+      //text.value = new XMLSerializer().serializeToString(document);
       fileSelector.onchange = function(e) {
         var file = e.target.files[0];
         var reader = new FileReader();
