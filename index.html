@@ -20,21 +20,20 @@ textarea {
 </head>
 
 <body>
-
   <form>
-  <input type="file" />
+  <div>
+    <input type="file" />
+    <input id="t2" type="text" value="1.txt" />
+    <input id="b1" type="button" value="Save1" />
+    <input id="b2" type="button" value="Save2" />
+  </div>
   <div>
     <textarea id="t1" rows="1000" cols="80">
     </textarea>
   </div>
-  <div>
-  <input id="t2" type="text" value="1.txt" />
-  <input id="b1" type="button" value="Save1" />
-  <input id="b2" type="button" value="Save2" />
-  </div>
   
   <script>
-  var form = document.querySelector("form");
+  //var form = document.querySelector("form");
   var input = document.querySelector("input[type=file]");
 var text = document.querySelector("textarea#t1");
 var filename = document.querySelector("input#t2");
@@ -59,9 +58,9 @@ button1.onclick = function(e) {
   a.download = filename.value;
   a.href = URL.createObjectURL(blob);
   document.body.appendChild(a);
-  a.appendChild(document.createTextNode(filename.value));
-  var br = document.createElement("br");
-  document.body.appendChild(br);
+  //a.appendChild(document.createTextNode(filename.value));
+  //var br = document.createElement("br");
+  //document.body.appendChild(br);
   a.click();
 }
 
