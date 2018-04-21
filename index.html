@@ -46,9 +46,11 @@ input.onchange = function(e) {
   var reader = new FileReader();
   reader.onload = function(event) {
     text.value = event.target.result;
+    filename.value = e.target.files[0].name;
   }
-  filename.value = e.target.files[0].name;
-  reader.readAsText(new Blob([e.target.files[0]]));
+
+  //reader.readAsText(new Blob([e.target.files[0]]));
+  reader.readAsText(e.target.files[0], "UTF-8");
 }
 
 button1.onclick = function(e) {
