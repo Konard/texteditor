@@ -44,8 +44,8 @@
 
       text.value = new XMLSerializer().serializeToString(document);
       
-      text.addEventListener("change", eventPrinter);
-      //text.addEventListener("click", eventPrinter);
+      //text.addEventListener("change", eventPrinter);
+      text.addEventListener("click", function() {print(text);});
       text.setSelectionRange(0, 100);
       text.focus();
       //text.select();
