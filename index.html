@@ -5,7 +5,7 @@
     #menu { position: fixed; top: 0px; left: 0px; height: 78px; width: 100%; background-color: #fff; border-bottom: 1px solid #000; }
     #menu > * { margin-top: 10px; margin-left: 10px; }
     #t1 { border: none; padding: 2%; position: absolute; top: 79px; width: 96%; }
-    #f1 { width: 90px; }
+    #f1 { width: 85px; }
   </style>
 </head>
 <body>
@@ -16,22 +16,23 @@
       <input id="b1" type="button" value="Save">
     </div>
     <div>
-      <textarea id="t1" rows="1000" cols="71"></textarea>
+      <textarea id="t1"></textarea>
     </div>
     <script>
-      var input = document.querySelector("input[type=file]");
-      var text = document.querySelector("textarea#t1");
-      var filename = document.querySelector("input#t2");
-      var button1 = document.querySelector("input#b1");
+      var input = document.querySelector("#f1");
+      var text = document.querySelector("#t1");
+      var filename = document.querySelector("#t2");
+      var button1 = document.querySelector("#b1");
       filename.value = document.title;
       text.value = new XMLSerializer().serializeToString(document) + "/" + filename.value;
       input.onchange = function(e) {
+        var file = e.target.files[0];
         var reader = new FileReader();
         reader.onload = function(event) {
           text.value = event.target.result;
-          filename.value = e.target.files[0].name;
+          filename.value = file.name;
         }
-        reader.readAsText(e.target.files[0], "UTF-8");
+        reader.readAsText(file);
       }
       button1.onclick = function(e) {
         e.preventDefault();
