@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+<style>
+html, body, form
+{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+textarea {
+  display: block;
+  white-space: pre;
+  width: 500px;
+  height: 300px;
+}
+</style>
+</head>
+
+<body>
+
+  <form>
+  <input type="file" />
+  <div>
+    <textarea id="t1"></textarea>
+  </div>
+  <div>
+  <input id="t2" type="text" value="1.txt" />
+  <input id="b1" type="button" value="Save1" />
+  <input id="b2" type="button" value="Save2" />
+  </div>
+  
+  <script>
+  var form = document.querySelector("form");
+  var input = document.querySelector("input[type=file]");
+var text = document.querySelector("textarea#t1");
+var filename = document.querySelector("input#t2");
+var button1 = document.querySelector("input#b1");
+var button2 = document.querySelector("input#b2");
+
+text.value = document.body.innerHTML;
+
+input.onchange = function(e) {
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    text.value = event.target.result;
+  }
+  filename.value = e.target.files[0].name;
+  reader.readAsText(new Blob([e.target.files[0]]));
+}
+
+button1.onclick = function(e) {
+  e.preventDefault();
+  var blob = new Blob([text.value]);
+  var a = document.createElement("a");
+  a.download = filename.value;
+  a.href = URL.createObjectURL(blob);
+  document.body.appendChild(a);
+  a.appendChild(document.createTextNode(filename.value));
+  var br = document.createElement("br");
+  document.body.appendChild(br);
+  a.click();
+}
+
+button2.onclick = function(e) {
+  e.preventDefault();
+  var content = text.value;
+            // a [save as] dialog will be shown
+            window.open("data:application/txt," + encodeURIComponent(content), "_self");
+}
+</script>
+</form>
+
+
+</body>
+
+</html>
