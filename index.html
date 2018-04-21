@@ -53,8 +53,11 @@
           else if (p >= end) { start = end; end = p; }
           else end = p;
         }
-        selectButton.value = "Select (" + start + " - " + end + ")";
+        updateSelectButton();
       });
+      function updateSelectButton() {
+        selectButton.value = "Select (" + start + " - " + end + ")";
+      }
       fileSelector.onchange = function (e) {
         var file = e.target.files[0];
         var reader = new FileReader();
@@ -92,13 +95,16 @@
         buffer = source.slice(start, end);
         var after = source.slice(end, source.length);
         text.value = before + after;
+
+        end = start;
+        updateSelectButton();
       }
-      copyButton = function (e) {
+      copyButton.onclick = function (e) {
         e.preventDefault();
         if (start === end) return;
         buffer = text.value.slice(start, end);
       }
-      pasteButton = function (e) {
+      pasteButton.onclick = function (e) {
         e.preventDefault();
         var source = text.value;
         var before = source.slice(0, start);
