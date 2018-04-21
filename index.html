@@ -7,7 +7,7 @@
     * { font-family: Courier, 'Courier New', monospace; margin: 0px; padding: 0px; }
     form, form > div { width: 100%; }
     #menu { padding-bottom: 10px; border-bottom: 1px solid #000; }
-    #menu > * { margin-top: 10px; margin-left: 10px; background: #fff; padding: 20px; }
+    #menu > * { margin-top: 10px; margin-left: 10px; background: #fff; padding: 10px; border: 1px solid #888; }
     #tContent { border: none; padding: 2%; width: 96%; }
     #fSelector { width: 87px; }
     #tFilename { width: 95%; }
@@ -31,12 +31,12 @@
       <textarea id="tContent" rows="200"></textarea>
     </div>
     <script>
-      var fileSelector = document.querySelector("#fSelector");
-      var text = document.querySelector("#tContent");
-      var filename = document.querySelector("#tFilename");
-      var saveButton = document.querySelector("#bSave");
-      var addRowsButton = document.querySelector("#bAddRows");
-      var removeRowsButton = document.querySelector("#bRemoveRows");
+      var fileSelector = document.getElementById("fSelector");
+      var text = document.getElementById("tContent");
+      var filename = document.getElementById("tFilename");
+      var saveButton = document.getElementById("bSave");
+      var addRowsButton = document.getElementById("bAddRows");
+      var removeRowsButton = document.getElementById("bRemoveRows");
       var selectButton = document.getElementById("bSelect");
       var start = 0, end = 0, buffer = "";
       var cutButton = document.getElementById("bCut");
