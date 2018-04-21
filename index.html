@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Text editor v1</title>
+  <title>Text editor v2</title>
 </head>
 <body>
   <form>
     <div>
       <input type="file">
-      <input id="t2" type="text" value="1.txt">
+      <input id="t2" type="text" value="texteditor.v2.html">
       <input id="b1" type="button" value="Save1">
     </div>
     <div>
@@ -18,7 +18,7 @@
       var text = document.querySelector("textarea#t1");
       var filename = document.querySelector("input#t2");
       var button1 = document.querySelector("input#b1");
-      text.value = new XMLSerializer().serializeToString(document) + "/text.html";
+      text.value = new XMLSerializer().serializeToString(document) + "/" + filename.value;
       input.onchange = function(e) {
         var reader = new FileReader();
         reader.onload = function(event) {
@@ -34,4 +34,4 @@
     </script>
   </form>
 </body>
-</html>/texteditor.v1.html
+</html>/texteditor.v2.html
