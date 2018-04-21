@@ -27,7 +27,7 @@
       <input id="bPaste" type="button" value="Paste">
     </div>
     <div>
-      <textarea id="tContent" rows="100"></textarea>
+      <textarea id="tContent" rows="200"></textarea>
     </div>
     <script>
       var fileSelector = document.querySelector("#fSelector");
@@ -46,7 +46,7 @@
 
       text.value = new XMLSerializer().serializeToString(document);
      
-      text.addEventListener("mouseup", function() {
+      text.addEventListener("mouseup", function () {
         if (text.selectionStart === text.selectionEnd) {
           var p = text.selectionEnd;
           if (p <= start) { end = start; start = p; }
@@ -55,7 +55,7 @@
         }
         selectButton.value = "Select (" + start + " - " + end + ")";
       });
-      fileSelector.onchange = function(e) {
+      fileSelector.onchange = function (e) {
         var file = e.target.files[0];
         var reader = new FileReader();
         reader.onload = function(event) {
@@ -67,22 +67,43 @@
         }
         reader.readAsText(file);
       }
-      saveButton.onclick = function(e) {
+      saveButton.onclick = function (e) {
         e.preventDefault();
         window.open("data:application/octet-stream," + encodeURIComponent(text.value) + "/" + filename.value, "_self");
       }
-      addRowsButton.onclick = function(e) {
+      addRowsButton.onclick = function (e) {
         e.preventDefault();
         text.rows += 100;
       }
-      removeRowsButton.onclick = function(e) {
+      removeRowsButton.onclick = function (e) {
         e.preventDefault();
         text.rows -= 100;
         if (text.rows < 100) text.rows = 100;
       }
-      selectButton.onclick = function(e) {
+      selectButton.onclick = function (e) {
         e.preventDefault();
         text.setSelectionRange(start, end);
+      }
+      cutButton.onclick = function (e) {
+        e.preventDefault();
+        if (start === end) return;
+        var source = text.value;
+        var before = source.slice(0, start);
+        buffer = source.slice(start, end);
+        var after = source.slice(end, source.length);
+        text.value = before + after;
+      }
+      copyButton = function (e) {
+        e.preventDefault();
+        if (start === end) return;
+        buffer = text.value.slice(start, end);
+      }
+      pasteButton = function (e) {
+        e.preventDefault();
+        var source = text.value;
+        var before = source.slice(0, start);
+        var after = source.slice(end, source.length);
+        text.value = before + buffer + after;
       }
     </script>
   </form>
