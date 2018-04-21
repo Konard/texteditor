@@ -30,7 +30,7 @@ input.onchange = function(e) {
 }
 button1.onclick = function(e) {
   e.preventDefault();
-  window.open("data:application," + encodeURIComponent(text.value), "_self");
+  window.open("data:application/octet-stream," + encodeURIComponent(text.value), "_self");
 }
 </script>
 </form>
