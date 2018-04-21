@@ -31,11 +31,18 @@
       <textarea id="tContent" rows="200"></textarea>
     </div>
     <script>
-      var fileSelector = document.getElementById("fSelector");
-      var text = document.getElementById("tContent");
-      var filename = document.getElementById("tFilename");
-      var saveButton = document.getElemenvar pasteButton = document.getElementById("bPaste");var pasteButton = document.getElementById("bPaste");
-      
+      var fileSelector = document.querySelector("#fSelector");
+      var text = document.querySelector("#tContent");
+      var filename = document.querySelector("#tFilename");
+      var saveButton = document.querySelector("#bSave");
+      var addRowsButton = document.querySelector("#bAddRows");
+      var removeRowsButton = document.querySelector("#bRemoveRows");
+      var selectButton = document.getElementById("bSelect");
+      var start = 0, end = 0, buffer = "";
+      var cutButton = document.getElementById("bCut");
+      var copyButton = document.getElementById("bCopy");
+      var pasteButton = document.getElementById("bPaste");
+      var deleteButton = document.getElementById("bDelete");
 
       text.value = new XMLSerializer().serializeToString(document);
 
