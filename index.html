@@ -1,4 +1,6 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+<head>
   <meta charset="UTF-8">
   <script src="remove-filename.js"></script>
   <style>
@@ -15,7 +17,8 @@
   <form>
     <div id="menu">
       <input id="tFilename" type="text" value="texteditor.html">
-      <input id="fSelector" type="file" value="Open">
+      <input id="bSelector" type="button" value="Open">
+      <input id="fSelector" type="file">
       <input id="bSave" type="button" value="Save">
       <input id="bAddRows" type="button" value="+100 rows">
       <input id="bRemoveRows" type="button" value="-100 rows">
@@ -30,6 +33,7 @@
     </div>
     <script>
       var fileSelector = document.getElementById("fSelector");
+      var fileSelectorButton = document.getElementById("bSelector");
       var text = document.getElementById("tContent");
       var filename = document.getElementById("tFilename");
       var saveButton = document.getElementById("bSave");
@@ -75,6 +79,10 @@
           filename.value = file.name;
         }
         reader.readAsText(file);
+      }
+      fileSelectorButton.onclick = function (e) {
+        e.preventDefault();
+        fileSelector.click();
       }
       saveButton.onclick = function (e) {
         e.preventDefault();
@@ -128,4 +136,7 @@
         end = start;
         updateSelectButton();
       }
-    </script></form></body></html>/texteditor.html
+    </script>
+  </form>
+</body>
+</html>/texteditor.v14.html
