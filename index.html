@@ -1,32 +1,37 @@
-<!DOCTYPE html><html><head>
-  <title>Text editor</title>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text editor v1</title>
 </head>
 <body>
- &nbsp;<form>
- &nbsp;<div>
-    <input type="file">
-   &nbsp;<input id="t2" type="text" value="1.txt">
-   &nbsp;<input id="b1" type="button" value="Save1">
- &nbsp;</div>
- &nbsp;<div>
- &nbsp; &nbsp;<textarea id="t1" rows="1000" cols="58"></textarea>
- &nbsp;</div>
-  <script>
-var input = document.querySelector("input[type=file]");
-var text = document.querySelector("textarea#t1");
-var filename = document.querySelector("input#t2");
-var button1 = document.querySelector("input#b1");
-text.value = new XMLSerializer().serializeToString(document) + "/text.html";
-input.onchange = function(e) {
-  var reader = new FileReader();
-  reader.onload = function(event) {
-    text.value = event.target.result;
-    filename.value = e.target.files[0].name;
-  }
-  reader.readAsText(e.target.files[0], "UTF-8");
-}
-button1.onclick = function(e) {
-  e.preventDefault();
-  window.open("data:application/octet-stream," + encodeURIComponent(text.value), "_self");
-}
-</script></form></body></html>/text.html
+  <form>
+    <div>
+      <input type="file">
+      <input id="t2" type="text" value="1.txt">
+      <input id="b1" type="button" value="Save1">
+    </div>
+    <div>
+      <textarea id="t1" rows="1000" cols="58"></textarea>
+    </div>
+    <script>
+      var input = document.querySelector("input[type=file]");
+      var text = document.querySelector("textarea#t1");
+      var filename = document.querySelector("input#t2");
+      var button1 = document.querySelector("input#b1");
+      text.value = new XMLSerializer().serializeToString(document) + "/text.html";
+      input.onchange = function(e) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          text.value = event.target.result;
+          filename.value = e.target.files[0].name;
+        }
+        reader.readAsText(e.target.files[0], "UTF-8");
+      }
+      button1.onclick = function(e) {
+        e.preventDefault();
+        window.open("data:application/octet-stream," + encodeURIComponent(text.value) + "/" + filename.value, "_self");
+      }
+    </script>
+  </form>
+</body>
+</html>/texteditor.v1.html
