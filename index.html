@@ -58,7 +58,7 @@
         if (text.rows < 100) text.rows = 100;
       }
       window.sizeToContent();
-      document.write(document.body.lastChild.tagName);
+      document.write(' @@ ' + document.body.lastChild.outerHTML);
     </script>
   </form>
 </body>
