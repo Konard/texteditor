@@ -34,28 +34,19 @@
       var addRowsButton = document.querySelector("#bAddRows");
       var removeRowsButton = document.querySelector("#bRemoveRows");
       var selectButton = document.getElementById("bSelect");
-      
-      var print = function (o) {
-        document.write("<pre>");
-        for (var property in o)
-          document.write(property + " = " + o[property] + "\n");
-        document.write("</pre>");
-      }
-      
-      var eventPrinter = function (e) { print(e); };
+      var start = 0;
+      var end = 0;
 
       text.value = new XMLSerializer().serializeToString(document);
-      
-      //text.addEventListener("change", eventPrinter);
-      text.addEventListener("mousedown", function() {
-        selectButton.value = "Select (" + text.selectionStart + " - " + text.selectionEnd + ")";
+     
+      text.addEventListener("mouseup", function() {
+        if (text.selectionStart === text.selectionEnd) {
+          var p = text.selectionEnd;
+          if (p < start) { end = start; start = p; }
+          if (p > end) { start = end; end = p; }
+        }
+        selectButton.value = "Select (" + start + " - " + end + ")";
       });
-      text.setSelectionRange(0, 100);
-      text.focus();
-      //text.select();
-
-      //print(text);
-
       fileSelector.onchange = function(e) {
         var file = e.target.files[0];
         var reader = new FileReader();
@@ -80,6 +71,10 @@
         e.preventDefault();
         text.rows -= 100;
         if (text.rows < 100) text.rows = 100;
+      }
+      selectButton.onclick = function(e) {
+        e.preventDefault();
+        text.setSelectionRange(start, end);
       }
     </script>
   </form>
