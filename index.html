@@ -36,7 +36,10 @@
         var file = e.target.files[0];
         var reader = new FileReader();
         reader.onload = function(event) {
-          text.value = event.target.result;
+          var content = event.target.result;
+          var endIndex = content.lastIndexOf("/" + file.name);
+          if (endIndex >= 0) content = content.slice(0, endIndex);
+          text.value = content;
           filename.value = file.name;
         }
         reader.readAsText(file);
@@ -54,7 +57,9 @@
         text.rows -= 100;
         if (text.rows < 100) text.rows = 100;
       }
+      window.sizeToContent();
+      document.write(document.body.lastChild.tagName);
     </script>
   </form>
 </body>
-</html>/texteditor.v12.html
+</html>/texteditor.v13.html
