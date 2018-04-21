@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>texteditor.v5.html</title>
+  <title>texteditor.v6.html</title>
   <style>
     * { font-family: courier new; }
+    #menu { position: absolute; top: 0px; left: 0px; height: 200px; width: 100%; padding: 10px; }
+    #t1 { margin-top: 200px; }
   </style>
 </head>
 <body>
   <form>
-    <div>
+    <div id="menu">
       <input type="file">
       <input id="t2" type="text" value="">
       <input id="b1" type="button" value="Save">
     </div>
     <div>
-      <textarea id="t1" rows="1000" cols="70"></textarea>
+      <textarea id="t1" rows="1000" cols="71"></textarea>
     </div>
     <script>
       var input = document.querySelector("input[type=file]");
@@ -38,4 +40,4 @@
     </script>
   </form>
 </body>
-</html>/texteditor.v5.html
+</html>/texteditor.v6.html
