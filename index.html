@@ -19,11 +19,10 @@
       <textarea id="t1" rows="1000"></textarea>
     </div>
     <script>
-      var select = document.querySelector;
-      var fileSelector = select("#f1");
-      var text = select("#t1");
-      var filename = select("#t2");
-      var save = select("#b1");
+      var fileSelector = document.querySelector("#f1");
+      var text = document.querySelector("#t1");
+      var filename = document.querySelector("#t2");
+      var saveButton = document.querySelector("#b1");
       filename.value = document.title;
       text.value = new XMLSerializer().serializeToString(document) + "/" + filename.value;
       fileSelector.onchange = function(e) {
@@ -35,7 +34,7 @@
         }
         reader.readAsText(file);
       }
-      save.onclick = function(e) {
+      saveButton.onclick = function(e) {
         e.preventDefault();
         window.open("data:application/octet-stream," + encodeURIComponent(text.value) + "/" + filename.value, "_self");
       }
