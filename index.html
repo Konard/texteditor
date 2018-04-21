@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
   <title>Text editor</title>
 </head>
 <body>
-  <form>
-  <div>
-    <input type="file" />
-    <input id="t2" type="text" value="1.txt" />
-    <input id="b1" type="button" value="Save1" />
-  </div>
-  <div>
-    <textarea id="t1" rows="1000" cols="58">
-    </textarea>
-  </div>
+ &nbsp;<form>
+ &nbsp;<div>
+    <input type="file">
+   &nbsp;<input id="t2" type="text" value="1.txt">
+   &nbsp;<input id="b1" type="button" value="Save1">
+ &nbsp;</div>
+ &nbsp;<div>
+ &nbsp; &nbsp;<textarea id="t1" rows="1000" cols="58"></textarea>
+ &nbsp;</div>
   <script>
 var input = document.querySelector("input[type=file]");
 var text = document.querySelector("textarea#t1");
 var filename = document.querySelector("input#t2");
 var button1 = document.querySelector("input#b1");
-
+text.value = new XMLSerializer().serializeToString(document) + "/text.html";
 input.onchange = function(e) {
   var reader = new FileReader();
   reader.onload = function(event) {
@@ -32,7 +29,4 @@ button1.onclick = function(e) {
   e.preventDefault();
   window.open("data:application/octet-stream," + encodeURIComponent(text.value), "_self");
 }
-</script>
-</form>
-</body>
-</html>
+</script></form></body></html>/text.html
