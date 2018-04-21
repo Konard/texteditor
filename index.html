@@ -235,6 +235,17 @@ button3.onclick = function(e) {
   download("hello world", "dlText.txt", "text/plain");
 	download("data:text/plain,hello%20world", "dlDataUrlText.txt", "text/plain");
 	download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
+	
+	var str = "Name, Price\nApple, 2\nOrange, 3";
+var uri = 'data:text/csv;charset=utf-8,' + str;
+
+var downloadLink = document.createElement("a");
+downloadLink.href = uri;
+downloadLink.download = "data.csv";
+
+document.body.appendChild(downloadLink);
+downloadLink.click();
+document.body.removeChild(downloadLink);
 }
 
 </script>
