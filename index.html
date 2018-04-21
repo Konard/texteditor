@@ -32,11 +32,25 @@
       var saveButton = document.querySelector("#bSave");
       var addRowsButton = document.querySelector("#bAddRows");
       var removeRowsButton = document.querySelector("#bRemoveRows");
+      
+      var print = function (o) {
+        document.write("<pre>");
+        for (var property in o)
+          document.write(property + " = " + o[property]);
+        document.write("</pre>");
+      }
+      
+      var eventPrinter = function (e) { print(e); };
 
-      for (var property in text)
-        document.write(property + " = " + text[property] + "<br>");
+      text.value = new XMLSerializer().serializeToString(document);
+      
+      text.addEventListener("change", eventPrinter);
+      text.addEventListener("click", eventPrinter);
+      text.setSelectionRange(0, 100);
+      text.select();
 
-      //text.value = new XMLSerializer().serializeToString(document);
+      print(text);
+
       fileSelector.onchange = function(e) {
         var file = e.target.files[0];
         var reader = new FileReader();
