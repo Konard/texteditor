@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Text editor v4</title>
+  <title>texteditor.v5.html</title>
   <style>
     * { font-family: courier new; }
   </style>
@@ -10,17 +10,18 @@
   <form>
     <div>
       <input type="file">
-      <input id="t2" type="text" value="texteditor.v4.html">
+      <input id="t2" type="text" value="">
       <input id="b1" type="button" value="Save">
     </div>
     <div>
-      <textarea id="t1" rows="1000" cols="76"></textarea>
+      <textarea id="t1" rows="1000" cols="70"></textarea>
     </div>
     <script>
       var input = document.querySelector("input[type=file]");
       var text = document.querySelector("textarea#t1");
       var filename = document.querySelector("input#t2");
       var button1 = document.querySelector("input#b1");
+      filename.value = document.title;
       text.value = new XMLSerializer().serializeToString(document) + "/" + filename.value;
       input.onchange = function(e) {
         var reader = new FileReader();
@@ -37,4 +38,4 @@
     </script>
   </form>
 </body>
-</html>/texteditor.v4.html
+</html>/texteditor.v5.html
